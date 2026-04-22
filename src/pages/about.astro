@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+---
+<Layout
+  title="About - Lint Pros"
+  description="About Lint Pros, a firefighter-owned dryer vent cleaning company serving Fox River Grove and the Northwest suburbs."
+>
+  <section class="about">
+    <div class="about__inner">
+      <h1 class="about__title">About Lint Pros</h1>
+      <p class="about__lead">
+        Dryer vent cleaning, bird nest removals, reruns, and safer airflow.
+      </p>
+      <p>
+        Lint Pros is a firefighter-owned local business based in Fox River Grove and focused on one lane: dryer vent systems.
+      </p>
+      <p>
+        Homes, groomers, salons, spas, rehab centers, apartments, condos, and other higher-lint properties call when airflow drops or vents get blocked.
+      </p>
+      <p>
+        The work stays simple: inspect the vent path, clear the buildup, solve the restriction, and leave the system moving the way it should.
+      </p>
+      <p class="about__cred">
+        {site.license}
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about {
+    padding: var(--spacing-20, 5rem) var(--container-pad);
+    background: var(--color-bg);
+  }
+
+  .about__inner {
+    max-width: 52rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+
+  .about__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .about__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+
+  .about__lead {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--color-ink);
+  }
+
+  .about p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+
+  .about__cred {
+    font-family: var(--font-mono);
+    font-size: 0.85rem !important;
+    color: var(--color-faint) !important;
+    margin-top: var(--spacing-4);
+    letter-spacing: 0.04em;
+  }
+</style>

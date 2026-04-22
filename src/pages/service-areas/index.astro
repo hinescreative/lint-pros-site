@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AreaSweep from "../../components/AreaSweep.astro";
+---
+<Layout
+  title="Service Areas - Lint Pros"
+  description="Dryer vent cleaning service areas for Lint Pros across Fox River Grove and the Northwest suburbs."
+>
+  <section class="page-head">
+    <div class="page-head__inner">
+      <p class="page-head__eyebrow">Service Area</p>
+      <h1 class="page-head__title">Fox River Grove and the Northwest suburbs</h1>
+      <p class="page-head__lead">Routes for homes, businesses, and multi-unit properties across the local service area.</p>
+    </div>
+  </section>
+  <AreaSweep />
+</Layout>
+
+<style>
+  .page-head {
+    padding: var(--spacing-16) var(--container-pad) var(--spacing-8);
+    background: var(--color-bg);
+  }
+
+  .page-head__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+
+  .page-head__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .page-head__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.05;
+    color: var(--color-ink);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .page-head__lead {
+    max-width: 42rem;
+    font-size: 1.1rem;
+    line-height: 1.55;
+    color: var(--color-muted);
+  }
+</style>

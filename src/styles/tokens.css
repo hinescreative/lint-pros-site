@@ -1,0 +1,121 @@
+/*
+ * Lint Pros — Design Tokens
+ * Tailwind v4 CSS-first config. All tokens in @theme expose both as
+ * CSS variables AND utility classes (bg-bg, text-ink, font-display, etc.)
+ *
+ * Sourced from the public Lint Pros logo and fire-service palette.
+ */
+
+@import "tailwindcss";
+
+@theme {
+  /* ── Palette ────────────────────────────────────────────── */
+  --color-bg:          #f6f1e8;
+  --color-surface:     #efe5d7;
+  --color-surface-2:   #e3d4c0;
+  --color-ink:         #121212;
+  --color-muted:       #5b5147;
+  --color-faint:       #8d8073;
+
+  --color-teal:        #c81d33;
+  --color-teal-hover:  #a51628;
+  --color-teal-dim:    #f3c6cd;
+  --color-navy:        #f0c53a;
+  --color-navy-deep:   #201915;
+
+  --color-border:      rgba(20, 22, 26, 0.12);
+
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body:    "Source Sans 3", -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "IBM Plex Mono", Menlo, monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+  --text-7xl:  4.5rem;
+
+  /* ── Spacing (8pt) ──────────────────────────────────────── */
+  --spacing-1:  0.25rem;
+  --spacing-2:  0.5rem;
+  --spacing-3:  0.75rem;
+  --spacing-4:  1rem;
+  --spacing-6:  1.5rem;
+  --spacing-8:  2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+
+  /* ── Container ──────────────────────────────────────────── */
+  --container-max: 1200px;
+  --container-pad: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+:root { color-scheme: light; }
+
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  color: var(--color-ink);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+img, svg, video { display: block; max-width: 100%; height: auto; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+::selection {
+  background: var(--color-teal);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  background: var(--color-teal);
+  color: var(--color-bg);
+  font-weight: 600;
+  border-radius: 4px;
+}
+.skip-link:focus { left: 1rem; }

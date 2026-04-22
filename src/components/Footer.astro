@@ -1,0 +1,155 @@
+---
+import { site, services, serviceAreas } from "../data/site";
+
+const year = new Date().getFullYear();
+---
+<footer class="ft">
+  <div class="ft__grid">
+    <div class="ft__brand">
+      <a href="/" aria-label={`${site.name} - home`}>
+        <img src="/lintpros-assets/logo.jpg" alt={site.name} class="ft__logo" width="586" height="528" loading="lazy" />
+      </a>
+      <p class="ft__blurb">Dryer vent cleaning for homes, groomers, salons, and multi-unit properties.</p>
+      <p class="ft__license">{site.license}</p>
+    </div>
+
+    <div class="ft__col">
+      <h4>Services</h4>
+      <ul>
+        {services.map((s) => (
+          <li><a href="/services/">{s.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="ft__col">
+      <h4>Service Areas</h4>
+      <ul>
+        {serviceAreas.map((a) => (
+          <li><a href="/service-areas/">{a.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="ft__col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href={site.phoneHref} class="ft__phone">{site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li class="ft__muted">{site.city}</li>
+        <li class="ft__muted">Homes, businesses, HOA cleanings</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ft__bottom">
+    <span>© {year} {site.name}. All rights reserved.</span>
+    <span class="ft__muted">{site.counties.join(" · ")}</span>
+  </div>
+</footer>
+
+<style>
+  .ft {
+    background: var(--color-navy-deep);
+    color: var(--color-muted);
+    border-top: 1px solid rgba(240, 197, 58, 0.18);
+    margin-top: var(--spacing-24);
+  }
+
+  .ft__grid {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--spacing-16) var(--container-pad) var(--spacing-12);
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: var(--spacing-12);
+  }
+
+  .ft__logo {
+    height: 78px;
+    width: auto;
+    margin-bottom: var(--spacing-4);
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .ft__blurb {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: var(--spacing-6);
+    max-width: 18rem;
+    text-transform: none;
+  }
+
+  .ft__license {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.56);
+    line-height: 1.55;
+  }
+
+  .ft__col h4 {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-navy);
+    margin-bottom: var(--spacing-4);
+    font-weight: 500;
+  }
+
+  .ft__col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .ft__col a {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.9375rem;
+    transition: color 200ms ease;
+  }
+
+  .ft__col a:hover { color: #fff; }
+
+  .ft__phone {
+    font-family: var(--font-mono);
+    color: #fff !important;
+  }
+
+  .ft__muted {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+  }
+
+  .ft__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--spacing-6) var(--container-pad);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.48);
+  }
+
+  @media (max-width: 840px) {
+    .ft__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-8);
+    }
+    .ft__brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 520px) {
+    .ft__grid { grid-template-columns: 1fr; }
+  }
+</style>

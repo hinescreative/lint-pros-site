@@ -1,0 +1,64 @@
+---
+import { serviceAreas, site } from "../data/site";
+---
+<section class="area">
+  <div class="area__inner">
+    <header class="area__head">
+      <h2 class="area__title">Where they work</h2>
+      <p class="area__intro">Fox River Grove based. Northwest suburbs and nearby Chicagoland service routes.</p>
+    </header>
+
+    <ul class="area__list">
+      {serviceAreas.map((a) => (
+        <li><span class="area__link">{a.name}</span></li>
+      ))}
+    </ul>
+
+    <a href={site.phoneHref} class="area__cta">Call now</a>
+  </div>
+</section>
+
+<style>
+  .area {
+    background: var(--color-surface);
+    padding: var(--spacing-20, 5rem) var(--container-pad);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .area__inner { max-width: var(--container-max); margin: 0 auto; }
+  .area__head { margin-bottom: var(--spacing-8); }
+  .area__eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-teal); margin-bottom: var(--spacing-3); }
+  .area__title { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--color-ink); margin-bottom: var(--spacing-3); }
+  .area__intro { font-size: 1rem; color: var(--color-muted); }
+
+  .area__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--spacing-8);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-3) var(--spacing-6);
+  }
+  .area__link {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    display: inline-flex;
+  }
+
+  .area__cta {
+    display: inline-block;
+    background: var(--color-teal);
+    color: #fff;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    transition: background 200ms ease;
+  }
+  .area__cta:hover { background: var(--color-teal-hover); color: #fff; }
+</style>

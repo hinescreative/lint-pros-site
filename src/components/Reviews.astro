@@ -1,0 +1,55 @@
+---
+import { proofItems } from "../data/site";
+---
+<section class="rev">
+  <div class="rev__inner">
+    <header class="rev__head">
+      <h2 class="rev__title">Proof</h2>
+      <p class="rev__intro">Local recognition and industry credentials.</p>
+    </header>
+    <ul class="rev__list">
+      {proofItems.map((r) => (
+        <li class="rev__item">
+          <img src={r.image} alt={r.title} class="rev__media" width="398" height="398" loading="lazy" />
+          <p class="rev__quote">{r.title}</p>
+          <p class="rev__attr">{r.sub}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .rev {
+    background: var(--color-bg);
+    padding: var(--spacing-20, 5rem) var(--container-pad);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .rev__inner { max-width: var(--container-max); margin: 0 auto; }
+  .rev__head { margin-bottom: var(--spacing-12); }
+  .rev__intro { color: var(--color-muted); }
+  .rev__eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-teal); margin-bottom: var(--spacing-3); }
+  .rev__title { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--color-ink); }
+  .rev__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-8);
+  }
+  .rev__item {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    padding: var(--spacing-6);
+  }
+  .rev__media {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    margin-bottom: var(--spacing-4);
+  }
+  .rev__quote { font-size: 1.1rem; line-height: 1.35; color: var(--color-ink); margin-bottom: var(--spacing-3); font-family: var(--font-display); text-transform: uppercase; }
+  .rev__attr { font-size: 0.95rem; line-height: 1.55; color: var(--color-muted); }
+</style>

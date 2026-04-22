@@ -1,0 +1,63 @@
+name: Voice Rule Check
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  voice-rule:
+    name: Grep for banned copy patterns
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check banned patterns
+        run: |
+          set +e
+          FAIL=0
+
+          echo "== Owner first-name sprawl (allowed only in /about) =="
+          HIT=$(grep -rn "I'm Justin\|Justin .\|I started\|I've been turning" src/ | grep -v "src/pages/about")
+          if [ -n "$HIT" ]; then
+            echo "::error::Owner first-name sprawl outside /about:"
+            echo "$HIT"
+            FAIL=1
+          fi
+
+          echo "== 'N things. One thing.' formula =="
+          HIT=$(grep -rn "\. One \." src/)
+          if [ -n "$HIT" ]; then
+            echo "::error::Formulaic headline pattern:"
+            echo "$HIT"
+            FAIL=1
+          fi
+
+          echo "== 'we live here' framing =="
+          HIT=$(grep -rni "live here\|our neighborhood\|our community" src/)
+          if [ -n "$HIT" ]; then
+            echo "::error::Hyper-local framing (site covers Chicago suburbs):"
+            echo "$HIT"
+            FAIL=1
+          fi
+
+          echo "== em-dashes and curly quotes =="
+          HIT=$(grep -rP "—|“|”|‘|’" src/pages/ src/components/ src/data/ 2>/dev/null)
+          if [ -n "$HIT" ]; then
+            echo "::error::Em-dashes or curly quotes (use ASCII - \" '):"
+            echo "$HIT"
+            FAIL=1
+          fi
+
+          echo "== raw <img> tags =="
+          HIT=$(grep -rn "<img " src/pages/ src/components/ | grep -v "Nav.astro\|Footer.astro")
+          if [ -n "$HIT" ]; then
+            echo "::warning::Raw img tags (prefer Astro Image/ResponsivePhoto):"
+            echo "$HIT"
+          fi
+
+          if [ $FAIL -eq 1 ]; then
+            echo "::error::Voice rule check FAILED"
+            exit 1
+          fi
+          echo "Voice rule check PASSED"

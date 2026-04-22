@@ -1,0 +1,92 @@
+---
+import "../styles/tokens.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = `${site.name} - Dryer Vent Cleaning`,
+  description = "Dryer vent cleaning for homes and businesses in Fox River Grove and the Northwest suburbs. Firefighter-owned, CSIA certified, and focused on safer airflow.",
+  canonical,
+  ogImage = "/lintpros-assets/logo.jpg",
+} = Astro.props;
+
+const resolvedCanonical = canonical ?? Astro.url.href;
+
+// LocalBusiness JSON-LD (business-name only - no owner-name per voice rule)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  name: site.name,
+  description,
+  telephone: site.phone,
+  email: site.email,
+  url: Astro.site?.href ?? resolvedCanonical,
+  areaServed: site.counties.map((c) => ({
+    "@type": "AdministrativeArea",
+    name: `${c} County, IL`,
+  })),
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Fox River Grove",
+    addressRegion: "IL",
+    addressCountry: "US",
+  },
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#201915" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <link rel="canonical" href={resolvedCanonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={resolvedCanonical} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- GA4 placeholder - swap G-XXXXXXXXXX for real ID when Wes provides -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,136 @@
+---
+import { site, specials } from "../data/site";
+---
+<section class="spec" id="specials">
+  <div class="spec__inner">
+    <header class="spec__head">
+      <h2 class="spec__title">Where they get called</h2>
+      <p class="spec__intro">Short list. Real jobs.</p>
+    </header>
+
+    <ul class="spec__grid">
+      {specials.map((s) => (
+        <li class="spec__card">
+          <div class="spec__card-tag">Special</div>
+          <h3 class="spec__card-title">{s.title}</h3>
+          <p class="spec__card-sub">{s.sub}</p>
+          <p class="spec__card-body">{s.body}</p>
+          <a href={site.phoneHref} class="spec__card-cta">Call now &rarr;</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .spec {
+    background: var(--color-navy-deep);
+    padding: var(--spacing-24) var(--container-pad);
+    border-top: 1px solid rgba(240, 197, 58, 0.18);
+    border-bottom: 1px solid rgba(240, 197, 58, 0.18);
+  }
+
+  .spec__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+
+  .spec__head {
+    max-width: 40rem;
+    margin-bottom: var(--spacing-12);
+  }
+
+  .spec__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .spec__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: var(--spacing-3);
+  }
+
+  .spec__intro {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  .spec__grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--spacing-4);
+  }
+
+  .spec__card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: var(--spacing-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+
+  .spec__card:hover {
+    border-color: rgba(240, 197, 58, 0.45);
+    transform: translateY(-3px);
+  }
+
+  .spec__card-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink);
+    background: var(--color-navy);
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    align-self: flex-start;
+    margin-bottom: var(--spacing-3);
+  }
+
+  .spec__card-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.1;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .spec__card-sub {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-navy);
+    font-weight: 600;
+    margin-bottom: var(--spacing-2);
+  }
+
+  .spec__card-body {
+    font-size: 0.925rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.72);
+    flex-grow: 1;
+    margin-bottom: var(--spacing-4);
+  }
+
+  .spec__card-cta {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-teal);
+    margin-top: auto;
+  }
+</style>

@@ -1,0 +1,177 @@
+---
+import { site } from "../data/site";
+---
+<section class="hero">
+  <picture class="hero__bg" aria-hidden="true">
+    <img src="/lintpros-assets/photos/van.jpg" alt="" width="646" height="424" loading="eager" fetchpriority="high" />
+  </picture>
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <div class="hero__logo-wrap">
+      <img src="/lintpros-assets/logo.jpg" alt="" class="hero__logo" width="586" height="528" />
+    </div>
+    <h1 class="hero__title">{site.hero.h1}</h1>
+    <p class="hero__sub">{site.hero.sub}</p>
+    <ul class="hero__chips" aria-label="Highlights">
+      <li>Since 2010</li>
+      <li>Homes + businesses</li>
+      <li>Bird nests + reruns</li>
+    </ul>
+    <div class="hero__cta">
+      <a href={site.phoneHref} class="btn btn--primary">Call {site.phone}</a>
+      <a href={site.textHref} class="btn btn--secondary">Text now</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 78vh;
+    padding: clamp(5rem, 10vw, 9rem) var(--container-pad);
+    display: flex;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+    background: var(--color-navy-deep);
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+
+  .hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(90deg,
+        rgba(32, 25, 21, 0.95) 0%,
+        rgba(32, 25, 21, 0.88) 30%,
+        rgba(32, 25, 21, 0.58) 50%,
+        rgba(32, 25, 21, 0.18) 72%,
+        rgba(15, 31, 56, 0) 100%
+      );
+  }
+
+  .hero__inner {
+    position: relative;
+    max-width: var(--container-max);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero__logo-wrap {
+    margin-bottom: var(--spacing-6);
+  }
+
+  .hero__logo {
+    width: clamp(160px, 18vw, 250px);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.7);
+  }
+
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 8.8vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    margin: 0 0 var(--spacing-6);
+    color: #fff;
+    max-width: 12ch;
+    text-transform: uppercase;
+  }
+
+  .hero__sub {
+    font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 34rem;
+    margin-bottom: var(--spacing-6);
+  }
+
+  .hero__chips {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--spacing-8);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+  }
+
+  .hero__chips li {
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(6px);
+  }
+
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+    margin-top: var(--spacing-8);
+  }
+
+  .hero__fine {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: rgba(250, 250, 247, 0.65);
+    margin-top: var(--spacing-4);
+    text-transform: uppercase;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.75rem;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    transition: background 200ms ease, border-color 200ms ease, color 200ms ease, transform 200ms ease;
+    border: 1px solid transparent;
+  }
+
+  .btn--primary {
+    background: var(--color-teal);
+    color: #fff;
+    border-color: var(--color-teal);
+  }
+  .btn--primary:hover { background: var(--color-teal-hover); border-color: var(--color-teal-hover); color: #fff; transform: translateY(-1px); }
+
+  .btn--secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(4px);
+  }
+  .btn--secondary:hover { border-color: #fff; background: rgba(255, 255, 255, 0.15); }
+
+  @media (max-width: 720px) {
+    .hero__scrim {
+      background: linear-gradient(180deg, rgba(32, 25, 21, 0.42) 0%, rgba(32, 25, 21, 0.94) 100%);
+    }
+  }
+</style>

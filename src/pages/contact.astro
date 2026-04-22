@@ -1,0 +1,136 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+---
+<Layout
+  title="Contact - Lint Pros"
+  description="Call or text Lint Pros for dryer vent cleaning in Fox River Grove and the Northwest suburbs."
+>
+  <section class="contact">
+    <div class="contact__inner">
+      <p class="contact__eyebrow">Contact</p>
+      <h1 class="contact__title">Need dryer vent cleaning? Call now.</h1>
+      <p class="contact__lead">
+        Homes, groomers, salons, condos, and group cleanings across the Northwest suburbs.
+      </p>
+
+      <div class="contact__grid">
+        <a href={site.phoneHref} class="contact__big">
+          <span class="contact__big-label">Call now</span>
+          <span class="contact__big-number">{site.phone}</span>
+        </a>
+
+        <div class="contact__details">
+          <h2 class="contact__sub">Service area</h2>
+          <p>{site.city} based. {site.counties.join(", ")} counties and nearby Chicagoland routes.</p>
+
+          <h2 class="contact__sub">Hours</h2>
+          <p>Flexible scheduling based on route and property type.</p>
+
+          <h2 class="contact__sub">Text</h2>
+          <p><a href={site.textHref}>Text {site.phone}</a> for urgent service questions.</p>
+
+          <h2 class="contact__sub">Email</h2>
+          <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact {
+    padding: var(--spacing-20, 5rem) var(--container-pad);
+    background: var(--color-bg);
+  }
+
+  .contact__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+
+  .contact__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .contact__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .contact__lead {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--color-muted);
+    margin-bottom: var(--spacing-12);
+    max-width: 40rem;
+  }
+
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-12);
+  }
+
+  .contact__big {
+    background: var(--color-navy-deep);
+    color: #fff;
+    padding: var(--spacing-12);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    border: 4px solid var(--color-navy);
+    transition: transform 200ms ease;
+  }
+
+  .contact__big:hover { transform: translateY(-2px); }
+
+  .contact__big-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+  }
+
+  .contact__big-number {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1;
+    color: #fff;
+  }
+
+  .contact__sub {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin: var(--spacing-6) 0 var(--spacing-2);
+    font-weight: 500;
+  }
+
+  .contact__sub:first-child { margin-top: 0; }
+
+  .contact__details p {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--color-muted);
+  }
+
+  .contact__details a { color: var(--color-teal); }
+
+  @media (max-width: 720px) {
+    .contact__grid { grid-template-columns: 1fr; }
+  }
+</style>

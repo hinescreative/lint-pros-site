@@ -1,0 +1,168 @@
+---
+import { services } from "../data/site";
+
+// Photos keyed to service slug - mapped per Clars imagery-v2-plan.md
+const photoMap: Record<string, string> = {
+  "annual-cleaning": "/lintpros-assets/photos/photo-2.jpeg",
+  "business-service": "/lintpros-assets/photos/photo-1.jpeg",
+  "multi-unit": "/lintpros-assets/photos/van.jpg",
+  "bird-nests": "/lintpros-assets/photos/photo-3.jpeg",
+  "vent-reruns": "/lintpros-assets/photos/dryer-fire.jpg",
+  "defender-cage": "/lintpros-assets/photos/photo-1.jpeg",
+};
+---
+<section class="svc" id="services">
+  <div class="svc__inner">
+    <header class="svc__head">
+      <h2 class="svc__title">Services</h2>
+      <p class="svc__intro">Cleanings, problem vents, and higher-use properties.</p>
+    </header>
+
+    <ul class="svc__grid">
+      {services.map((s) => (
+        <li class="svc__cell">
+          <article class="svc__card">
+            <picture class="svc__card-media">
+              <img src={photoMap[s.slug] ?? photoMap["annual-cleaning"]} alt={s.name} width="640" height="427" loading="lazy" />
+            </picture>
+            <div class="svc__card-body">
+              <h3 class="svc__card-title">{s.name}</h3>
+              <p class="svc__card-sum">{s.summary}</p>
+              <a href={`/contact/`} class="svc__card-link">Book this service &rarr;</a>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .svc {
+    background: var(--color-bg);
+    padding: var(--spacing-24) var(--container-pad);
+  }
+
+  .svc__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+
+  .svc__head {
+    max-width: 40rem;
+    margin-bottom: var(--spacing-16);
+  }
+
+  .svc__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .svc__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--spacing-4);
+    color: var(--color-ink);
+  }
+
+  .svc__intro {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+
+  .svc__grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-6);
+  }
+
+  @media (max-width: 700px) {
+    .svc__grid { grid-template-columns: 1fr; }
+  }
+
+  .svc__card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    overflow: hidden;
+    height: 100%;
+    transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .svc__card:hover {
+    border-color: var(--color-teal);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 36px -22px rgba(32, 25, 21, 0.32);
+  }
+
+  .svc__card-media {
+    display: block;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--color-surface-2);
+  }
+
+  .svc__card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 300ms ease;
+  }
+
+  .svc__card:hover .svc__card-media img {
+    transform: scale(1.03);
+  }
+
+  .svc__card-body {
+    padding: var(--spacing-6) var(--spacing-6) var(--spacing-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    flex-grow: 1;
+  }
+
+  .svc__card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-teal);
+  }
+
+  .svc__card-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    line-height: 1.1;
+    color: var(--color-ink);
+    margin: var(--spacing-1) 0;
+    text-transform: uppercase;
+  }
+
+  .svc__card-sum {
+    font-size: 0.925rem;
+    line-height: 1.5;
+    color: var(--color-muted);
+    flex-grow: 1;
+  }
+
+  .svc__card-link {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-teal);
+    margin-top: var(--spacing-4);
+  }
+</style>
